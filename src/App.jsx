@@ -56,7 +56,7 @@ function App() {
                 // EXTRACT CUSTOMER DATA
                 const $customerData = $xml.find('CRMDataSet').find('Contacts').children('Item')
                 const customers = []
-                $customerData.each(function() {
+                $customerData.each(function () {
                     const id = $(this).find('Header').find('ID').text()
                     const firstName = $(this).find('Name').find('FirstName').text()
                     const lastName = $(this).find('Name').find('LastName').text()
@@ -82,13 +82,13 @@ function App() {
                 // EXTRACT INVOICES 
                 const $invoiceData = $xml.find('CRMDataSet').find('Invoices').children('Item');
                 const invoices = []
-                $invoiceData.each(function() {
+                $invoiceData.each(function () {
 
                     const id = $(this).children('Header').children('ID').text()
                     const customerId = $(this).find('ContactID').text()
                     const grandTotal = Number($(this).find('Summary').find("GrandTotal").text())
                     let payAmount = 0
-                    $(this).find('Payments').children('Item').each(function() {
+                    $(this).find('Payments').children('Item').each(function () {
                         payAmount += Number($(this).find('Amount').text())
                     })
                     const type = $(this).children('Type').text()
@@ -175,6 +175,11 @@ function App() {
                     { title: "Type", field: "type" },
                     { title: "Note", field: "note" },
                 ]}
+                options={{
+                    pagination: true,
+                    paginationSize: 30,
+                    paginationSizeSelector: [10, 50, 100, 200],
+                }}
             />
             <Button
                 onClick={() => exportData(tableData, 'invoices.csv')}
