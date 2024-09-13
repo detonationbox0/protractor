@@ -19,7 +19,6 @@ function App() {
     const [endDate, setEndDate] = useState(dayjs("2024-09-03"))
     const [tableData, setTableData] = useState([])
     const [customerData, setCustomerData] = useState([])
-    const [appointmentData, setAppointmentData] = useState([])
 
     const getData = () => {
 
@@ -187,9 +186,6 @@ function App() {
             <Button
                 onClick={() => exportData(customerData, 'customers.csv')}
             >Export Customers</Button>
-            <Button
-                onClick={() => exportData(appointmentData, 'appointments.csv')}
-            >Export Appointments</Button>
         </>
     )
 }
